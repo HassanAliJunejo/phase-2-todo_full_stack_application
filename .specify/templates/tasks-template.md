@@ -62,12 +62,14 @@ description: "Task list template for feature implementation"
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T004 Setup database schema and migrations framework with Neon Serverless PostgreSQL
+- [ ] T005 [P] Implement JWT-based authentication/authorization framework using Better Auth
+- [ ] T006 [P] Setup API routing and middleware structure with FastAPI
+- [ ] T007 Create base models/entities that all stories depend on using SQLModel
+- [ ] T008 Configure error handling and logging infrastructure with consistent error codes (401, 403, 404, 422)
+- [ ] T009 Setup environment configuration management with secure secret handling
+- [ ] T010 Implement user data isolation mechanisms at application and database level
+- [ ] T011 Create shared data models for frontend-backend consistency
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 

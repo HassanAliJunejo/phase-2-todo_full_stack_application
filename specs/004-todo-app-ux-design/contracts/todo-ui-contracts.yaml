@@ -1,0 +1,287 @@
+# UI Interaction API Contract
+
+## Overview
+This document defines the API contracts for UI interactions required by the Todo App UI/UX design. These endpoints will support the UI components and interactions specified in the feature requirements.
+
+## Authentication Endpoints
+
+### POST /api/auth/login
+Authenticate user and return session token
+
+**Request:**
+```json
+{
+  "email": "user@example.com",
+  "password": "securePassword123"
+}
+```
+
+**Response (200 OK):**
+```json
+{
+  "token": "jwt-token-string",
+  "user": {
+    "id": "user-id",
+    "email": "user@example.com",
+    "name": "User Name"
+  }
+}
+```
+
+**Response (401 Unauthorized):**
+```json
+{
+  "error": "Invalid credentials"
+}
+```
+
+### POST /api/auth/register
+Register new user
+
+**Request:**
+```json
+{
+  "email": "user@example.com",
+  "password": "securePassword123",
+  "name": "User Name"
+}
+```
+
+**Response (201 Created):**
+```json
+{
+  "token": "jwt-token-string",
+  "user": {
+    "id": "user-id",
+    "email": "user@example.com",
+    "name": "User Name"
+  }
+}
+```
+
+## Task Management Endpoints
+
+### GET /api/tasks
+Retrieve user's tasks with pagination
+
+**Query Parameters:**
+- page: integer (default: 1)
+- limit: integer (default: 10)
+- status: string (optional: "active", "completed")
+- priority: string (optional: "low", "medium", "high")
+
+**Headers:**
+- Authorization: Bearer {token}
+
+**Response (200 OK):**
+```json
+{
+  "tasks": [
+    {
+      "id": "task-id-1",
+      "title": "Task title",
+      "description": "Task description",
+      "priority": "high",
+      "completed": false,
+      "createdAt": "2023-01-01T00:00:00Z",
+      "updatedAt": "2023-01-01T00:00:00Z",
+      "dueDate": "2023-01-10T00:00:00Z"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 10,
+    "total": 25,
+    "pages": 3
+  }
+}
+```
+
+### POST /api/tasks
+Create a new task
+
+**Headers:**
+- Authorization: Bearer {token}
+
+**Request:**
+```json
+{
+  "title": "New task title",
+  "description": "Task description",
+  "priority": "medium",
+  "dueDate": "2023-01-10T00:00:00Z"
+}
+```
+
+**Response (201 Created):**
+```json
+{
+  "id": "new-task-id",
+  "title": "New task title",
+  "description": "Task description",
+  "priority": "medium",
+  "completed": false,
+  "createdAt": "2023-01-01T00:00:00Z",
+  "updatedAt": "2023-01-01T00:00:00Z",
+  "dueDate": "2023-01-10T00:00:00Z"
+}
+```
+
+### PUT /api/tasks/{taskId}
+Update a task
+
+**Headers:**
+- Authorization: Bearer {token}
+
+**Request:**
+```json
+{
+  "title": "Updated task title",
+  "description": "Updated description",
+  "priority": "high",
+  "completed": true,
+  "dueDate": "2023-01-15T00:00:00Z"
+}
+```
+
+**Response (200 OK):**
+```json
+{
+  "id": "task-id",
+  "title": "Updated task title",
+  "description": "Updated description",
+  "priority": "high",
+  "completed": true,
+  "createdAt": "2023-01-01T00:00:00Z",
+  "updatedAt": "2023-01-02T00:00:00Z",
+  "dueDate": "2023-01-15T00:00:00Z"
+}
+```
+
+### DELETE /api/tasks/{taskId}
+Delete a task
+
+**Headers:**
+- Authorization: Bearer {token}
+
+**Response (204 No Content)**
+
+## Category Management Endpoints
+
+### GET /api/categories
+Retrieve user's categories
+
+**Headers:**
+- Authorization: Bearer {token}
+
+**Response (200 OK):**
+```json
+[
+  {
+    "id": "category-id-1",
+    "name": "Work",
+    "color": "#4F46E5",
+    "taskCount": 5
+  },
+  {
+    "id": "category-id-2",
+    "name": "Personal",
+    "color": "#10B981",
+    "taskCount": 3
+  }
+]
+```
+
+### POST /api/categories
+Create a new category
+
+**Headers:**
+- Authorization: Bearer {token}
+
+**Request:**
+```json
+{
+  "name": "New Category",
+  "color": "#EF4444"
+}
+```
+
+**Response (201 Created):**
+```json
+{
+  "id": "new-category-id",
+  "name": "New Category",
+  "color": "#EF4444",
+  "taskCount": 0
+}
+```
+
+## User Profile Endpoints
+
+### GET /api/profile
+Retrieve user profile information
+
+**Headers:**
+- Authorization: Bearer {token}
+
+**Response (200 OK):**
+```json
+{
+  "id": "user-id",
+  "email": "user@example.com",
+  "name": "User Name",
+  "avatar": "https://example.com/avatar.jpg",
+  "preferences": {
+    "theme": "light",
+    "notifications": true
+  }
+}
+```
+
+### PUT /api/profile
+Update user profile information
+
+**Headers:**
+- Authorization: Bearer {token}
+
+**Request:**
+```json
+{
+  "name": "Updated Name",
+  "avatar": "https://example.com/new-avatar.jpg",
+  "preferences": {
+    "theme": "dark",
+    "notifications": false
+  }
+}
+```
+
+**Response (200 OK):**
+```json
+{
+  "id": "user-id",
+  "email": "user@example.com",
+  "name": "Updated Name",
+  "avatar": "https://example.com/new-avatar.jpg",
+  "preferences": {
+    "theme": "dark",
+    "notifications": false
+  }
+}
+```
+
+## Error Response Format
+All error responses follow this format:
+
+```json
+{
+  "error": "Error message",
+  "code": "ERROR_CODE",
+  "timestamp": "2023-01-01T00:00:00Z"
+}
+```
+
+## Common Headers
+- Content-Type: application/json
+- Authorization: Bearer {token} (for authenticated endpoints)
+- Accept: application/json

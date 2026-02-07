@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Production builds
+.next/
+out/
+
+# Distribution directory
+dist/
+build/
+
+# Logs
+*.log
+
+# Environment variables
+.env*
+
+# Coverage reports
+coverage/
+
+# Next.js specific
+.nyc_output/
+.svelte-kit/
+.vercel/
+.netlify/
+
+# Testing
+__tests__/
+test/
+tests-e2e/

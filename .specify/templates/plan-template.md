@@ -31,7 +31,35 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+### Security-First Design Verification
+- [ ] Authentication framework integrated from start
+- [ ] User data isolation mechanisms planned
+- [ ] Endpoint-level permission validation designed
+
+### Correctness of Business Logic Verification
+- [ ] Task ownership validation planned for all operations
+- [ ] State transition rules defined
+- [ ] Data integrity measures incorporated
+
+### Spec-Driven Development Verification
+- [ ] API contracts defined before implementation
+- [ ] Request/response schemas documented
+- [ ] Feature specifications agreed upon
+
+### Maintainability and Scalability Verification
+- [ ] Clean architecture principles applied
+- [ ] Separation of concerns maintained
+- [ ] Horizontal scaling considerations addressed
+
+### Full-Stack Consistency Verification
+- [ ] Shared data models defined
+- [ ] API contracts consistent across frontend/backend
+- [ ] UI behavior aligned with backend capabilities
+
+### Quality Assurance Verification
+- [ ] Unit and integration test plans included
+- [ ] Error handling strategy defined
+- [ ] Code readability and documentation standards set
 
 ## Project Structure
 

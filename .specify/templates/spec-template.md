@@ -84,16 +84,23 @@
 
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: System MUST implement authentication and authorization for all user-facing features
+- **FR-002**: System MUST isolate user data at the application and database level
+- **FR-003**: System MUST validate user identity and permissions before processing requests
+- **FR-004**: System MUST validate task ownership on every operation
+- **FR-005**: System MUST follow defined state transition rules
+- **FR-006**: System MUST maintain data integrity across all operations
+- **FR-007**: System MUST define API behavior in specifications before implementation
+- **FR-008**: System MUST have clear request/response schemas for all endpoints
+- **FR-009**: System MUST follow clean architecture principles with clear separation of concerns
+- **FR-010**: System MUST adhere to the same data models and API contracts across frontend and backend
+- **FR-011**: System MUST include appropriate unit and integration tests
+- **FR-012**: System MUST have explicit and consistent error handling
 
 *Example of marking unclear requirements:*
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+- **FR-013**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
+- **FR-014**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
 ### Key Entities *(include if feature involves data)*
 

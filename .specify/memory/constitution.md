@@ -1,55 +1,82 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT
+Version change: N/A -> 1.0.0
+Modified principles: None (new constitution)
+Added sections: All sections
+Removed sections: None
+Templates requiring updates:
+- .specify/templates/plan-template.md ✅ updated
+- .specify/templates/spec-template.md ✅ updated
+- .specify/templates/tasks-template.md ✅ updated
+- .specify/templates/commands/*.md ✅ reviewed
+- README.md ⚠ pending
+Follow-up TODOs: None
+-->
+
+# Todo Full-Stack Web Application Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Security-First Design
+All features must implement authentication and authorization from the outset; User data must be isolated at the application and database level; Every endpoint must validate user identity and permissions before processing requests.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Correctness of Business Logic
+Task ownership must be validated on every operation; State transitions must follow defined rules; Data integrity must be maintained across all operations.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Spec-Driven Development (NON-NEGOTIABLE)
+API behavior must be defined in specifications before implementation; All endpoints must have clear request/response schemas documented; Contracts must be agreed upon before development begins.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Maintainability and Scalability
+Code must follow clean architecture principles with clear separation of concerns; Modules must be loosely coupled and highly cohesive; System must support horizontal scaling and evolving requirements.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Full-Stack Consistency
+Frontend and backend must adhere to the same data models and API contracts; Shared types and schemas must be maintained across client and server; UI behavior must reflect backend capabilities accurately.
 
-### [PRINCIPLE_6_NAME]
+### VI. Quality Assurance
 
+All code must include appropriate unit and integration tests; Error handling must be explicit and consistent across the application; Code must be readable, well-documented, and maintainable.
 
-[PRINCIPLE__DESCRIPTION]
+## Technology Standards
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### Tech Stack Requirements
+- Frontend: Next.js 16+ with App Router
+- Backend: Python FastAPI
+- ORM: SQLModel
+- Database: Neon Serverless PostgreSQL
+- Authentication: Better Auth (JWT-based)
+- API style: REST (no GraphQL)
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Implementation Requirements
+- All API endpoints must require a valid JWT token
+- JWT signature must be verified using shared secret
+- Database schema must be normalized and migration-ready
+- Frontend must consume APIs strictly according to spec
+- Error handling must be explicit and consistent (401, 403, 404, 422)
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Development Workflow
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Security Constraints
+- User identity must be extracted from token, not request body
+- User ID in URL must match authenticated user
+- No cross-user data access under any condition
+- Tokens must support expiration and invalid access handling
+
+### Functional Requirements
+- Must implement all 5 Basic Level Todo features
+- Persistent storage required (no in-memory state)
+- Multi-user support required
+- Task completion state must be toggleable
+- CRUD operations must be idempotent where applicable
+
+### Operational Requirements
+- Environment-based configuration (secrets via env vars)
+- Shared JWT secret across frontend and backend
+- Backend must be stateless
+- API must be deployable independently of frontend
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution governs all development activities for the Todo Full-Stack Web Application. All code reviews, architectural decisions, and feature implementations must comply with these principles. Amendments to this constitution require explicit approval and documentation of the changes and their impact on existing code.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**All API behavior must be defined before implementation. Every endpoint must enforce authenticated user ownership. JWT authentication must be verified on every protected request. RESTful API design with clear request/response schemas is mandatory.**
+
+**Version**: 1.0.0 | **Ratified**: 2026-01-31 | **Last Amended**: 2026-01-31
