@@ -1,27 +1,41 @@
 // Mock API for development/fallback
 export class MockApiClient {
+  private tasks: any[] = [];
+
   async getTasks() {
-    return [];
+    return this.tasks;
   }
 
   async createTask(task: any) {
-    return { id: Date.now().toString(), ...task };
+    const newTask = { id: Date.now().toString(), ...task, completed: false };
+    this.tasks.push(newTask);
+    return newTask;
   }
 
   async updateTask(id: string, task: any) {
-    return { id, ...task };
+    const index = this.tasks.findIndex(t => t.id === id);
+    if (index !== -1) {
+      this.tasks[index] = { ...this.tasks[index], ...task };
+      return this.tasks[index];
+    }
+    return null;
   }
 
   async deleteTask(id: string) {
+    this.tasks = this.tasks.filter(t => t.id !== id);
     return { success: true };
   }
 
   async login(email: string, password: string) {
-    return { token: 'mock-token', user: { email } };
+    return { access_token: 'mock-token', token_type: 'bearer' };
   }
 
-  async register(email: string, password: string) {
-    return { token: 'mock-token', user: { email } };
+  async register(email: string, password: string, name: string) {
+    return { access_token: 'mock-token', token_type: 'bearer' };
+  }
+
+  async getUserInfo() {
+    return { id: '1', email: 'mock@example.com', name: 'Mock User' };
   }
 }
 
