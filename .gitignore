@@ -1,4 +1,6 @@
+# ====================
 # Python
+# ====================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -10,8 +12,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
@@ -26,7 +26,9 @@ ENV/
 .venv/
 .env/
 
-# Next.js
+# ====================
+# Next.js / Node.js
+# ====================
 .next/
 out/
 node_modules/
@@ -36,45 +38,68 @@ yarn-error.log*
 .pnp/
 .pnp.js
 coverage/
+build/
+dist/
 
+# Allow frontend/lib TypeScript files
+!frontend/lib/*.ts
+
+# ====================
 # TypeScript
+# ====================
 *.tsbuildinfo
 *.min.js
 *.min.js.map
 *.js.map
 
-# IDE
+# ====================
+# IDE / Editor
+# ====================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
+# ====================
 # OS
+# ====================
 .DS_Store
 Thumbs.db
 
+# ====================
 # Logs
+# ====================
 *.log
 logs/
 
+# ====================
 # Environment variables
+# ====================
 .env*
 !.env.example
 
+# ====================
 # Coverage
+# ====================
 .coverage
 htmlcov/
 .coverage.*
 .cov-report/
 
+# ====================
 # FastAPI / Uvicorn
+# ====================
 *.db
 *.db-journal
 
+# ====================
 # Testing
+# ====================
 .pytest_cache/
 .hypothesis/
 
+# ====================
 # Windows reserved
+# ====================
 nul
